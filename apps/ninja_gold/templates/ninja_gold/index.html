@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ninja Gold</title>
+    <style>
+      li {
+        list-style: none;
+      }
+      .red {
+        color: red;
+      }
+      .green {
+        color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <p>Your Gold: {{request.session.gold}}</p>
+    Farm:
+    <form class="" action="/move" method="post">
+      {%csrf_token%}
+      <input type="hidden" name="building" value="farm">
+      <input type="submit" name="getGold" value="Get Gold">
+    </form>
+    Cave:
+    <form class="" action="/move" method="post">
+      {%csrf_token%}
+      <input type="hidden" name="building" value="cave">
+      <input type="submit" name="getGold" value="Get Gold">
+    </form>
+    House:
+    <form class="" action="/move" method="post">
+      {%csrf_token%}
+      <input type="hidden" name="building" value="house">
+      <input type="submit" name="getGold" value="Get Gold">
+    </form>
+    Casino:
+    <form class="" action="/move" method="post">
+      {%csrf_token%}
+      <input type="hidden" name="building" value="casino">
+      <input type="submit" name="getGold" value="Get Gold">
+    </form>
+    <p>Log:</p>
+    <ul>
+      {% for x in request.session.log %}
+        <li class="{{x.0}}">{{x.1}}</li>
+      {% endfor %}
+    </ul>
+    <form class="" action="/reset" method="post">
+      {%csrf_token%}
+      <input type="submit" name="reset" value="Reset">
+    </form>
+  </body>
+</html>
